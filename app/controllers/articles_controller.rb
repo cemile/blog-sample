@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  #except yerine only kelimesi de kullanılabilinirdi. sadece bunlar olsun diyerek
+  http_basic_authenticate_with name: "LYK2014", password: "123123", except: [:index, :show]
 
   def index
     @articles = Article.all
@@ -30,7 +32,6 @@ class ArticlesController < ApplicationController
 
   def create
 
-
     @article = Article.new(article_params)
 
     if @article.save
@@ -46,6 +47,7 @@ class ArticlesController < ApplicationController
 
     redirect_to articles_path
   end
+
   private
 
   def article_params
